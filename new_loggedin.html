@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cloud Storage Service</title>
+    </head>
+    <body>
+        Test
+		<br>
+		<input type="submit" value="Token" onclick="gettoken()">
+		
+		
+		
+		
+		<script type="text/javascript">
+			function gettoken() {
+			
+				var current_code = window.location.href.split('?code=')[1];
+				console.log("URL: " + window.location.href);
+				console.log("Split: " + current_code);
+				
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+				var urlencoded = new URLSearchParams();
+				urlencoded.append("grant_type", "authorization_code");
+				urlencoded.append("client_id", "706u2dl32g17n4809n4sg2a24q");
+				urlencoded.append("redirect_uri", "https://main.d2cr6f6lf1jopj.amplifyapp.com/loggedin.html");
+				urlencoded.append("code", current_code);
+				urlencoded.append("client_secret", "9q71uf3fal0g0ru7f23m7gue6mi82ain1d1soe690un01c4f6nf");
+
+				var requestOptions = {
+				  method: 'POST',
+				  headers: myHeaders,
+				  body: urlencoded,
+				  redirect: 'follow'
+				};
+
+				fetch("https://cloudstorage.auth.eu-central-1.amazoncognito.com/oauth2/token", requestOptions)
+				  .then(response => response.text())
+				  .then(result => console.log(result))
+				  .catch(error => console.log('error', error));
+			}
+		</script>
+		
+		
+    </body>
+</html>

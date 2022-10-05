@@ -30,8 +30,7 @@
       const MAX_IMAGE_SIZE = 100000000
 
       /* ENTER YOUR ENDPOINT HERE */
-
-      const API_ENDPOINT = 'https://ciaxap8z77.execute-api.eu-central-1.amazonaws.com/uploads?filename=' // e.g. https://ab1234ab123.execute-api.us-east-1.amazonaws.com/uploads
+      const API_ENDPOINT = 'https://ciaxap8z77.execute-api.eu-central-1.amazonaws.com/uploads?filename='
 
       new Vue({
         el: "#app",
@@ -43,25 +42,18 @@
         methods: {
           onFileChange (e) {
             let files = e.target.files || e.dataTransfer.files
-            //let filename = files[0].name
             if (!files.length) return
             this.createImage(files[0])
           },
           createImage (file) {
-            // var image = new Image()
             let reader = new FileReader()
             reader.onload = (e) => {
-              //console.log(file.name)
-              //console.log('length: ', e.target.result.includes('data:image/jpeg'))
                 console.log('length: ')
-              //if (!e.target.result.includes('data:image/jpeg')) {
-                //return alert('Wrong file type - JPG only.')
-              //}
-              if (e.target.result.length > MAX_IMAGE_SIZE) {
-                return alert('File is loo large.')
-              }
-              this.image = e.target.result
-              this.filename = file.name
+				if (e.target.result.length > MAX_IMAGE_SIZE) {
+					return alert('File is loo large.')
+				}
+				this.image = e.target.result
+				this.filename = file.name
             }
             reader.readAsDataURL(file)
           },
@@ -72,7 +64,7 @@
           },
           uploadImage: async function (e) {
             console.log('Upload clicked')
-            // Get the presigned URL
+            // Get the pre-signed URL
             const response = await axios({
               method: 'GET',
               url: API_ENDPOINT + this.filename
@@ -91,7 +83,7 @@
               body: blobData
             })
             console.log('Result: ', result)
-            // Final URL for the user doesn't need the query string params
+            // Final URL for the user (doesn't need the query string parameters)
             this.uploadURL = response.uploadURL.split('?')[0]
           }
         }
@@ -100,13 +92,16 @@
 	
 	function gettoken() {
 			
+				// Get the 'code' value from the current URL
 				var current_code = window.location.href.split('?code=')[1];
 				console.log("URL: " + window.location.href);
 				console.log("Split: " + current_code);
 				
+				// Define the header
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
+				// Define the body
 				var urlencoded = new URLSearchParams();
 				urlencoded.append("grant_type", "authorization_code");
 				urlencoded.append("client_id", "706u2dl32g17n4809n4sg2a24q");
@@ -114,6 +109,7 @@
 				urlencoded.append("code", current_code);
 				urlencoded.append("client_secret", "9q71uf3fal0g0ru7f23m7gue6mi82ain1d1soe690un01c4f6nf");
 
+				// Prepare the POST request
 				var requestOptions = {
 				  method: 'POST',
 				  headers: myHeaders,
@@ -121,13 +117,14 @@
 				  redirect: 'follow'
 				};
 
-				var res;
+				// Send the request with the correct parameters
 				fetch("https://cloudstorage.auth.eu-central-1.amazoncognito.com/oauth2/token", requestOptions)
 				  .then(response => response.text())
-				  //.then(result => console.log(result)
+				  
+				// Return the access token in an alert window
 				  .then(result => {
 					console.log(result);
-					var token = result.split('id_token":"')[1];
+					var token = result.split('access_token":"')[1];		// 'id_token', 'refresh_token' etc. can also be addressed
 					token = token.split('","')[0];
 					window.alert(token);
 				  })

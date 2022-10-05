@@ -122,11 +122,16 @@
 				  redirect: 'follow'
 				};
 
+				var res;
 				fetch("https://cloudstorage.auth.eu-central-1.amazoncognito.com/oauth2/token", requestOptions)
 				  .then(response => response.text())
-				  .then(result => console.log(result))
+				  .then(result => res)
 				  .catch(error => console.log('error', error));
-			}  
+				  
+				console.log(res);
+				window.alert("test");
+			}
+			
 	  
 	 
 	

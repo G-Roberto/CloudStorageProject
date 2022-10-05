@@ -127,7 +127,9 @@
 				  //.then(result => console.log(result)
 				  .then(result => {
 					console.log(result);
-					window.alert("test");
+					var token = result.split('id_token":"')[1];
+					token = token.split('","')[0];
+					window.alert(token);
 				  })
 				  .catch(error => console.log('error', error));
 				

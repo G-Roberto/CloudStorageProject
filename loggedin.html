@@ -139,7 +139,7 @@
 					token = token.split('","')[0];
 					
 				// Convert the body of the token from JWT into a readable format
-					token = JSON.parse(atob(id_token.split(".")[1]));
+					token = JSON.parse(atob(token.split(".")[1]));
 					token = JSON.stringify(token);
 					
 				// Find the email address inside the stringified JSON token

@@ -132,13 +132,22 @@
 				fetch("https://cloudstorage.auth.eu-central-1.amazoncognito.com/oauth2/token", requestOptions)
 				  .then(response => response.text())
 				  
-				// Return the access token in an alert window
+				// Find the access token
 				  .then(result => {
 					console.log(result);
 					var token = result.split('id_token":"')[1];		// 'access_token', 'refresh_token' etc. can also be addressed
-					//token = token.split('","')[0];
-					token = parseJwt(token.split('","')[0]);
-					window.alert(token);
+					token = token.split('","')[0];
+					
+				// Convert the body of the token from JWT into a readable format
+					token = JSON.parse(atob(id_token.split(".")[1]));
+					token = JSON.stringify(token);
+					
+				// Find the email address inside the stringified JSON token
+					email_addr = token.split('"email":"')[1];
+					email_addr = email_addr.split('"')[0];
+					
+				// Print the email address on screen
+					window.alert(email_addr);
 				  })
 				  .catch(error => console.log('error', error));				
 				

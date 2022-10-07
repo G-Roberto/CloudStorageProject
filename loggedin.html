@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Cloud Storage Service</title>
+		<script src="https://unpkg.com/vue@1.0.28/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
     </head>
     <body onload="javascript:gettoken()">
 		
@@ -54,72 +56,68 @@
 					
 				// Write the web page if the token is found and the email address gotten	
 					document.write(
-					'User: ' + email_addr + '<br>' +
-					'<a href="https://cloudstorage.auth.eu-central-1.amazoncognito.com/logout?client_id=706u2dl32g17n4809n4sg2a24q&logout_uri=https://main.d2cr6f6lf1jopj.amplifyapp.com/">Logout</a><br><br>' +
-					//'<input type="submit" value="Token" onclick="gettoken()"><br><br>' +
-					'<input type="submit" value="Token"><br><br>' +
-					
-					'<div id="app">' +
-					  '<h1>S3 Uploader Test</h1>' +
-				  
-					  '<div v-if="!image">' +
-						'<h2>Select an image</h2>' +
-						'<input type="file" @change="onFileChange">' +
-					  '</div>' +
-					  '<div v-else>' +
-						'<img :src="image" />' +
-						'<button v-if="!uploadURL" @click="removeImage">Remove file</button>' +
-						'<button v-if="!uploadURL" @click="uploadImage">Upload file</button>' +
-					  '</div>' +
-					  '<h2 v-if="uploadURL">Success! File uploaded to bucket.</h2>' +
-					'</div>'
-				);
-				
+						'User: ' + email_addr + '<br>' +
+						'<a href="https://cloudstorage.auth.eu-central-1.amazoncognito.com/logout?client_id=706u2dl32g17n4809n4sg2a24q&logout_uri=https://main.d2cr6f6lf1jopj.amplifyapp.com/">Logout</a><br><br>' +
+						'<input type="submit" value="Token"><br><br>' +
+						
+						'<div id="app">' +
+						  '<h1>S3 Uploader Test</h1>' +
+					  
+						  '<div v-if="!image">' +
+							'<h2>Select an image</h2>' +
+							'<input type="file" @change="onFileChange">' +
+						  '</div>' +
+						  '<div v-else>' +
+							'<img :src="image" />' +
+							'<button v-if="!uploadURL" @click="removeImage">Remove file</button>' +
+							'<button v-if="!uploadURL" @click="uploadImage">Upload file</button>' +
+						  '</div>' +
+						  '<h2 v-if="uploadURL">Success! File uploaded to bucket.</h2>' +
+						'</div>'
+					);
 				
 				  })
-				  //.catch(error => console.log('error', error));
 				  .catch(error => {
 					window.alert("ERROR");
 				  });
-				
 			}
-		
-
 			
-				console.log("id_token: " + id_token);
-				
-				var token = JSON.parse(atob(id_token.split(".")[1]));
-				console.log(token);
-				
-				var email_addr = JSON.stringify(token);
-				email_addr = email_addr.split('"email":"')[1];
-				email_addr = email_addr.split('"')[0];
-				console.log("Email: " + email_addr);
-				
-				document.write(
-					'User: ' + email_addr + '<br>' +
-					'<a href="https://cloudstorage.auth.eu-central-1.amazoncognito.com/logout?client_id=706u2dl32g17n4809n4sg2a24q&logout_uri=https://main.d2cr6f6lf1jopj.amplifyapp.com/">Logout</a><br><br>' +
-					'<input type="submit" value="Token" onclick="gettoken()"><br><br>' +
-					
-					'<div id="app">' +
-					  '<h1>S3 Uploader Test</h1>' +
-				  
-					  '<div v-if="!image">' +
-						'<h2>Select an image</h2>' +
-						'<input type="file" @change="onFileChange">' +
-					  '</div>' +
-					  '<div v-else>' +
-						'<img :src="image" />' +
-						'<button v-if="!uploadURL" @click="removeImage">Remove file</button>' +
-						'<button v-if="!uploadURL" @click="uploadImage">Upload file</button>' +
-					  '</div>' +
-					  '<h2 v-if="uploadURL">Success! File uploaded to bucket.</h2>' +
-					'</div>' +
-				);
-			
-			}
 		</script>
 		
+		<style type="text/css">
+			body {
+				background: #20262E;
+				padding: 20px;
+				font-family: sans-serif;
+			  }
+			#app {
+				background: #fff;
+				border-radius: 4px;
+				padding: 20px;
+				transition: all 0.2s;
+				text-align: center;
+			  }
+			#logo {
+				width: 100px;
+			  }
+			h2 {
+				font-weight: bold;
+				margin-bottom: 15px;
+			  }
+			h1, h2 {
+				font-weight: normal;
+				margin-bottom: 15px;
+			  }
+			a {
+				color: #42b983;
+			  }
+			img {
+				width: 30%;
+				margin: auto;
+				display: block;
+				margin-bottom: 10px;
+			}
+		</style>
 		
     </body>
 </html>

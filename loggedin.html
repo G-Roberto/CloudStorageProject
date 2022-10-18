@@ -93,6 +93,11 @@
 
 	
 		function gettoken() {
+			
+			// ============================
+			//      Getting the email
+			//    address from the token
+			// ============================
 		
 			// Get the 'code' value from the current URL
 			var current_code = window.location.href.split('?code=')[1];
@@ -142,21 +147,18 @@
 			// Write the email address on the web page if the token is found and the email address gotten	
 				document.getElementById("emailaddr").innerHTML = email_addr;
 			  })
-			
-			// Throw an error if the token cannot be found
-			  //.catch(error => {
-				//window.alert("ERROR");
-			  //});
 			  .catch(error => {
 				window.location.href = 'https://main.d2cr6f6lf1jopj.amplifyapp.com/error.html';
 			  });
-		}
-
-
-		const new_website = 'https://k0nvymm1ye.execute-api.eu-central-1.amazonaws.com/testStage/auth-route'
-			  
-		function login_test() {
-
+			
+			
+			// ============================
+			//     Showing the items in
+			//   the user's cloud storage
+			// ============================
+			
+			const new_website = 'https://k0nvymm1ye.execute-api.eu-central-1.amazonaws.com/testStage/auth-route';
+			
 			var myHeaders = new Headers();
 			myHeaders.append("Authorization", acc_token);
 
@@ -168,9 +170,11 @@
 
 			fetch(new_website, requestOptions)
 			  .then(response => response.text())
-			  .then(result => console.log(result))
+			  .then(result => var itemslist = result)
+			  //.then(result => console.log(result))
 			  .catch(error => console.log('error', error));
-
+			
+			console.log(itemslist);
 		}
 		
     </script>

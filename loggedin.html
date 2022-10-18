@@ -5,7 +5,7 @@
     <script src="https://unpkg.com/vue@1.0.28/dist/vue.js"></script>
     <script src="https://unpkg.com/axios@0.2.1/dist/axios.min.js"></script>
   </head>
-  <body onload="javascript:gettoken(); javascript:login_test();">
+  <body onload="javascript:gettoken();">
     
 	User: <p id="emailaddr"></p><br>
     <a href="https://cloudstorage.auth.eu-central-1.amazoncognito.com/logout?client_id=706u2dl32g17n4809n4sg2a24q&logout_uri=https://main.d2cr6f6lf1jopj.amplifyapp.com/">Logout</a><br><br>
@@ -168,7 +168,14 @@
 
 			fetch(new_website, requestOptions)
 			  .then(response => response.text())
-			  .then(result => console.log(result))
+			  //.then(result => console.log(result))
+			  .then(result => {
+				var files = result.split(',\"');
+				//var itemsnum = files[0].split('"body":"[');
+				for (let i = (files.length - 1); i > 1; i--) {
+					document.write('<a href="' + WEBSITE + response[i] + '">' + files[i] + '</a><br>');
+				}				
+			  })
 			  .catch(error => console.log('error', error));
 
 		}

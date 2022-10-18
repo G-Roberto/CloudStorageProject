@@ -170,8 +170,8 @@
 
 			fetch(new_website, requestOptions)
 			  .then(response => response.text())
-			  .then(result => var itemslist = result)
-			  //.then(result => console.log(result))
+			  //.then(result => itemslist = result)
+			  .then(result => console.log(result))
 			  .catch(error => console.log('error', error));
 			
 			console.log(itemslist);

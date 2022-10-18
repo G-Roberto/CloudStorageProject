@@ -174,7 +174,7 @@
 				var files = result.split(',\"');
 				//var itemsnum = files[0].split('"body":"[');
 				for (let i = (files.length - 1); i > 1; i--) {
-					document.write('<a href="' + WEBSITE + response[i] + '">' + files[i] + '</a><br>');
+					document.write('<a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>');
 				}				
 			  })
 			  .catch(error => console.log('error', error));

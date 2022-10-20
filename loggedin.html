@@ -9,13 +9,15 @@
     
 	User: <p id="emailaddr"></p><br>
     <a href="https://cloudstorage.auth.eu-central-1.amazoncognito.com/logout?client_id=706u2dl32g17n4809n4sg2a24q&logout_uri=https://main.d2cr6f6lf1jopj.amplifyapp.com/">Logout</a><br><br>
-	
-	<input type="submit" value="Login Test" onclick="login_test()">
     
     <div id="app">
-      <h1>S3 Uploader Test</h1>
+	
+		<h2> Show contents</h2>
+		<input type="submit" value="Show" onclick="show_contents()">
+		<br><p id="msgpar"></p>
+		<h1>S3 Uploader Test</h1>
   
-      <div v-if="!image">
+		<div v-if="!image">
         <h2>Select an image</h2>
         <input type="file" @change="onFileChange">
       </div>
@@ -156,7 +158,7 @@
 
 		const new_website = 'https://k0nvymm1ye.execute-api.eu-central-1.amazonaws.com/testStage/auth-route'
 			  
-		function login_test() {
+		function show_contents() {
 
 			var myHeaders = new Headers();
 			myHeaders.append("Authorization", acc_token);

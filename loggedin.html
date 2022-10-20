@@ -176,9 +176,10 @@
 			  console.log(result);
 				var files = result.split('",\"');
 				const lastval = files.length - 1;
+				console.log("Lastval = " + lastval);
 				files[lastval] = files[lastval].split('\"]"')[0];
 				for (let i = lastval; i >= 1; i--) {
-					//document.write('<a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>');
+					console.log(i + ": " + files[i]);
 					document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>';
 				}				
 			  })

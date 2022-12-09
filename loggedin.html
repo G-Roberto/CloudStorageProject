@@ -13,7 +13,7 @@
     <div id="app">
 	
 		<h2> Show contents</h2>
-		<input type="submit" value="Show" onclick="show_contents()">
+		<input type="submit" value="Show" id="btn" onclick="show_contents()">
 		<br><p id="msgpar"></p>
 		<h1>S3 Uploader Test</h1>
   
@@ -182,6 +182,9 @@
 				}				
 			  })
 			  .catch(error => console.log('error', error));
+			
+			btn = document.getElementById('btn');
+			btn.style.display = 'none';
 
 		}
 		

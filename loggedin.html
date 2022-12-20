@@ -12,9 +12,13 @@
     
     <div id="app">
 	
-		<h2> Show contents</h2>
+		<h2>Show contents</h2>
 		<input type="submit" value="Show" id="btn" onclick="show_contents()">
-		<br><p id="msgpar"></p>
+		<br><p id="msgpar"></p>	
+
+		<h2>Delete file</h2>
+		<input type="submit" value="Show" id="btn2" onclick="delete_file(image2.jpg)">
+		
 		<h1>S3 Uploader Test</h1>
   
 		<div v-if="!image">
@@ -151,7 +155,7 @@
 				window.location.href = 'https://main.d2cr6f6lf1jopj.amplifyapp.com/error.html';
 			  });
 		}
-
+		
 
 		const new_website = 'https://k0nvymm1ye.execute-api.eu-central-1.amazonaws.com/testStage/auth-route'
 			  
@@ -178,7 +182,8 @@
 				const lastval = files.length - 1;
 				files[lastval] = files[lastval].split('\\\"]\"')[0];
 				for (let i = lastval; i >= 1; i--) {
-					document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>';
+					//document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>';
+					document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a> <input type="submit" value="Delete" id="delbtn" onclick="delete_file(' + files[i] + ')"><br>';
 				}				
 			  })
 			  .catch(error => console.log('error', error));
@@ -186,6 +191,19 @@
 			btn = document.getElementById('btn');
 			btn.style.display = 'none';
 
+		}
+		
+		
+		function delete_file(filename) {
+			var requestOptions = {
+			  method: 'DELETE',
+			  redirect: 'follow'
+			};
+
+			fetch("https://47ttwbrs8f.execute-api.eu-central-1.amazonaws.com/default/deleteitem?itemKey=" + filename, requestOptions)
+			  .then(response => response.text())
+			  .then(result => console.log(result))
+			  .catch(error => console.log('error', error));
 		}
 		
     </script>

@@ -17,7 +17,7 @@
 		<br><p id="msgpar"></p>	
 
 		<h2>Delete file</h2>
-		<input type="submit" value="Show" id="btn2" onclick="delete_file('image2.jpg')">
+		<input type="submit" value="Delete image2.jpg" id="btn2" onclick="delete_file('image2.jpg')">
 		
 		<h1>S3 Uploader Test</h1>
   
@@ -183,7 +183,7 @@
 				files[lastval] = files[lastval].split('\\\"]\"')[0];
 				for (let i = lastval; i >= 1; i--) {
 					//document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>';
-					document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a> <input type="submit" value="Delete" id="delbtn" onclick="delete_file(' + files[i] + ')"><br>';
+					document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a> <input type="submit" value="Delete" id="delbtn" onclick="delete_file(' + "'" + files[i] + "'" + ')"><br>';
 				}				
 			  })
 			  .catch(error => console.log('error', error));

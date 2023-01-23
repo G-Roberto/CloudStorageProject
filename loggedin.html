@@ -67,7 +67,7 @@
                     <div class="post-preview">
 						<div v-if="!image">
 							<a><h2>Upload file</h2></a>
-							<input type="file" class="post-title btn btn-primary text-uppercase" @change="onFileChange">
+							<input type="file" @change="onFileChange">
 						</div>
 						<div v-else>
 							<img :src="image" />

@@ -276,7 +276,7 @@
 				files[lastval] = files[lastval].split('\\\"]\"')[0];
 				for (let i = lastval; i >= 1; i--) {
 					//document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>';
-					document.getElementById("msgpar").innerHTML = '<input type="submit" value="Delete" id="delbtn" onclick="delete_file(' + "'" + files[i] + "'" + ')"> ' + document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a><br>';
+					document.getElementById("msgpar").innerHTML = document.getElementById("msgpar").innerHTML + '<br><a href="' + WEBSITE + files[i] + '">' + files[i] + '</a>' + '<input type="submit" value="Delete" id="delbtn" onclick="delete_file(' + "'" + files[i] + "'" + ')"><br>';
 				}				
 			  })
 			  .catch(error => console.log('error', error));

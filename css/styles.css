@@ -6804,6 +6804,7 @@ textarea.form-control-lg {
 }
 
 .justify-content-center {
+  text-align: center;
   justify-content: center !important;
 }
 
